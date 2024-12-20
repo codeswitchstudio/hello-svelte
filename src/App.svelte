@@ -1,7 +1,4 @@
 <script>
-  import data from './data.json'
-  let posts = data.data
-
   let count = 1
   function increment(){
     count++
@@ -14,6 +11,28 @@
 
   $: multiple = number*2  //this is the reactive assignment
 
+  import data from './data.json'
+  let author = '';
+  let post = '';
+ 
+  let posts = data.data
+
+  function addPost(){
+    // console.log('author: ', author)
+    // console.log('post: ', post)
+    const _post = {
+      id: posts.length +1, 
+      author: author,
+      post: post
+    }
+
+    posts.push(_post)
+    posts = posts
+
+    author = " "
+    post = " "
+
+  }
 </script>
 
 
@@ -71,23 +90,23 @@
 
 <h1>Form Binding</h1>
 <h2>Add Post</h2>
-<label class="form-control w-full max-w-xs">
-  <div class="label">
+<div class="form-control">
+  <label for="author"  class="label">
     <span class="label-text">Author</span>
-  </div>
-  <input type="text" placeholder="Username" class="input input-bordered w-full max-w-xs" />
-</label>
-<label class="label">
+  </label>
+  <input bind:value="{author}" name="author" type="text" placeholder="username" class="input input-bordered " />
+
+<label for="post" class="label">
   <span class="label-text">Post</span>
-
 </label>
-<textarea class="textarea textarea-primary" placeholder="Quote"></textarea>
 
-<button class="btn btn-secondary mt-4 w-80">Submit</button> 
+<textarea bind:value="{post}" name="post" class="textarea textarea-primary" placeholder="Quote"></textarea>
+</div>
+<button on:click="{addPost}" class="btn btn-secondary mt-4 w-80">Submit</button> 
 
 <h1>Template Looping</h1>
 <div class="overflow-auto space-y-4 p-4">
-  {#each posts as post}
+  {#each posts.reverse() as post}
   <div class="card bordered w-80 shadow-xl bg-primary">
     <div class="card-body">
       <h2 class="card-title">{post.author}</h2>
