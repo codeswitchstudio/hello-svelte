@@ -1,4 +1,7 @@
 <script>
+  import data from './data.json'
+  let posts = data.data
+
   let count = 1
   function increment(){
     count++
@@ -17,13 +20,21 @@
 
 
 <main class="flex flex-col justify-center intems-venter h-screen space-y-4">
+
+
 <h1>Component Basics</h1>
-  {count}
+
+{count}
 <button on:click="{increment}" class="btn btn-primary">Primary</button>
+
+
 <h1>Reactivity</h1>
+
 <p>The number is: {number}</p>
+
 <button on:click="{add5}" class="btn btn-accent">Add Five</button>
 <p>The number multiplied by 2 is {multiple}</p>
+
 
 <h1>Conditional Rendering</h1>
 
@@ -59,6 +70,21 @@
 </div>
 
 {/if}
+
+<h1>Template Looping</h1>
+{#each posts as post}
+<div class="card bordered w-80 shadow-xl bg-primary">
+  <div class="card-body">
+    <h2 class="card-title">{post.author}</h2>
+    <p>{post.post}</p>
+  </div>
+  
+</div>
+{/each}
+
+
+
+
 </main>
 
 <style>

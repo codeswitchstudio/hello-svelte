@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "author": "Indi",
+      "post": "Cogito ergo spud."
+    },
+    {
+      "id": 2,
+      "author": "Ms Pringle",
+      "post": "I think therefore potato."
+    },
+    {
+      "id": 3,
+      "author": "Will Shamspeare",
+      "post": "Lots wife lies."
+    },
+    {
+      "id": 4,
+      "author": "Jorge Boorshes",
+      "post": "On my French Fries."
+    }
+  ]
+}
