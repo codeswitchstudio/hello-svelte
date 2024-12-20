@@ -104,15 +104,15 @@
 {/if}
 
 <h1>Class binding</h1>
-<div class="btn-group">
+<div class="join p-10">
   <button on:click={() => changeActive(1)} 
-    class="btn btn-outline btn-info {active === 1 ? 'btn-active': ''}">Click
+    class="join-item btn btn-info {active === 1 ? 'btn-active': ''}">Click
   </button>
   <button on:click={() => changeActive(2)} 
-    class="btn btn-outline btn-warning {active === 2 ? 'btn-active': ''}">Clickitty
+    class="join-item btn btn-warning {active === 2 ? 'btn-active': ''}">Clickitty
   </button>
   <button on:click={() => changeActive(3)} 
-    class="btn btn-outline btn-success {active === 3 ? 'btn-active': ''}">Clack
+    class="join-item btn btn-success {active === 3 ? 'btn-active': ''}">Clack
   </button>
 </div>
 
