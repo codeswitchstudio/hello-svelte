@@ -1,9 +1,12 @@
 <script>
+  //Component Basics
   let count = 1
   function increment(){
     count++
   }
 
+
+  //Reactivity
   let number = 1
   function add5(){
     number += 5;
@@ -12,8 +15,7 @@
   $: multiple = number*2  //this is the reactive assignment
 
 
-
-  //class binding
+  //Class binding
   let active = 1;
 
   function changeActive(activeNum){
@@ -23,16 +25,18 @@
 
 
 
-
-  //arrays and form
+  //Arrays and form
   import data from './data.json'
-  let author = '';
-  let post = '';
- 
+  import Post from './components/Post.svelte'
+  import Form from './components/Form.svelte'
+  import Buttonrow from './components/Buttonrow.svelte'
+
+
+
+  //Posts
   let posts = data.data
 
-
-  function addPost(){
+  function addPost(author, post){
     // console.log('author: ', author)
     // console.log('post: ', post)
     const _post = {
@@ -40,37 +44,29 @@
       author: author,
       post: post
     }
-
     posts.push(_post)
     posts = posts
-
-    author = " "
-    post = " "
 
   }
 </script>
 
 
 <main class="flex flex-col justify-center items-center h-screen space-y-4">
+  <h2>Component Basics</h2>
+  {count}
+  <button on:click="{increment}" class="btn btn-primary">Primary</button>
 
+  <h2>Reactivity</h2>
 
-<h1>Component Basics</h1>
-
-{count}
-<button on:click="{increment}" class="btn btn-primary">Primary</button>
-
-
-<h1>Reactivity</h1>
-
-<p>The number is: {number}</p>
+  <p>The number is: {number}</p>
 
 <button on:click="{add5}" class="btn btn-accent">Add Five</button>
 <p>The number multiplied by 2 is {multiple}</p>
 
 
-<h1>Conditional Rendering</h1>
+<h2>Conditional Rendering</h2>
 
-{#if multiple < 20}  
+{#if multiple < 50}  
 <div role="alert" class="alert alert-success">
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -103,45 +99,17 @@
 
 {/if}
 
-<h1>Class binding</h1>
-<div class="join p-10">
-  <button on:click={() => changeActive(1)} 
-    class="join-item btn btn-info {active === 1 ? 'btn-active': ''}">Click
-  </button>
-  <button on:click={() => changeActive(2)} 
-    class="join-item btn btn-warning {active === 2 ? 'btn-active': ''}">Clickitty
-  </button>
-  <button on:click={() => changeActive(3)} 
-    class="join-item btn btn-success {active === 3 ? 'btn-active': ''}">Clack
-  </button>
-</div>
+<h2>Class binding</h2>
+<Buttonrow {active} {changeActive} />
 
-<h1>Form Binding</h1>
-<h2>Add Post</h2>
-<div class="form-control">
-  <label for="author"  class="label">
-    <span class="label-text">Author</span>
-  </label>
-  <input bind:value="{author}" name="author" type="text" placeholder="username" class="input input-bordered " />
+<h2>Form Binding</h2>
 
-<label for="post" class="label">
-  <span class="label-text">Post</span>
-</label>
+<Form addPost = {addPost} /> 
 
-<textarea bind:value="{post}" name="post" class="textarea textarea-primary" placeholder="Quote"></textarea>
-</div>
-<button on:click="{addPost}" class="btn btn-secondary mt-4 w-80">Submit</button> 
-
-<h1>Template Looping</h1>
+<h2>Template Looping</h2>
 <div class="overflow-auto space-y-4 p-4">
   {#each posts.reverse() as post}
-  <div class="card bordered w-80 shadow-xl bg-primary">
-    <div class="card-body">
-      <h2 class="card-title">{post.author}</h2>
-      <p>{post.post}</p>
-    </div>
-  
-  </div>
+  <Post author={post.author} post={post.post} />
   {/each}
 </div>
 
