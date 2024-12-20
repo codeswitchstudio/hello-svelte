@@ -17,8 +17,6 @@
 </script>
 
 
-
-
 <main class="flex flex-col justify-center intems-venter h-screen space-y-4">
 
 
@@ -71,16 +69,34 @@
 
 {/if}
 
-<h1>Template Looping</h1>
-{#each posts as post}
-<div class="card bordered w-80 shadow-xl bg-primary">
-  <div class="card-body">
-    <h2 class="card-title">{post.author}</h2>
-    <p>{post.post}</p>
+<h1>Form Binding</h1>
+<h2>Add Post</h2>
+<label class="form-control w-full max-w-xs">
+  <div class="label">
+    <span class="label-text">Author</span>
   </div>
+  <input type="text" placeholder="Username" class="input input-bordered w-full max-w-xs" />
+</label>
+<label class="label">
+  <span class="label-text">Post</span>
+
+</label>
+<textarea class="textarea textarea-primary" placeholder="Quote"></textarea>
+
+<button class="btn btn-secondary mt-4 w-80">Submit</button> 
+
+<h1>Template Looping</h1>
+<div class="overflow-auto space-y-4 p-4">
+  {#each posts as post}
+  <div class="card bordered w-80 shadow-xl bg-primary">
+    <div class="card-body">
+      <h2 class="card-title">{post.author}</h2>
+      <p>{post.post}</p>
+    </div>
   
+  </div>
+  {/each}
 </div>
-{/each}
 
 
 
