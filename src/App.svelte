@@ -11,11 +11,15 @@
 
   $: multiple = number*2  //this is the reactive assignment
 
+  let active = 1;
+
+
   import data from './data.json'
   let author = '';
   let post = '';
  
   let posts = data.data
+
 
   function addPost(){
     // console.log('author: ', author)
@@ -36,7 +40,7 @@
 </script>
 
 
-<main class="flex flex-col justify-center intems-venter h-screen space-y-4">
+<main class="flex flex-col justify-center items-center h-screen space-y-4">
 
 
 <h1>Component Basics</h1>
@@ -87,6 +91,19 @@
 </div>
 
 {/if}
+
+<h1>Class binding</h1>
+<div class="btn-group">
+  <button on:click="{() => active = 1}" 
+    class="btn btn-outline btn-info {active === 1 ? 'btn-active': ''}">Click
+  </button>
+  <button on:click="{() => active = 2}" 
+    class="btn btn-outline btn-warning {active === 2 ? 'btn-active': ''}">Clickitty
+  </button>
+  <button on:click="{() => active = 3}" 
+    class="btn btn-outline btn-success {active === 3 ? 'btn-active': ''}">Clack
+  </button>
+</div>
 
 <h1>Form Binding</h1>
 <h2>Add Post</h2>
