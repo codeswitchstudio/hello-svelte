@@ -3,6 +3,12 @@
   let author = '';
   let post = '';
  
+function sendAddPost(){
+	addPost(author, post)
+	author = '';
+  post = '';
+}
+
 	
 </script>
 
@@ -17,6 +23,6 @@
 		<span class="label-text">Post</span>
 	</label>
 	<textarea bind:value="{post}" name="post" class="textarea textarea-primary" placeholder="Quote"></textarea>
-	<button on:click="{() => addPost(author, post)}" class="btn btn-secondary mt-4 w-80">Submit</button> 
+	<button on:click="{sendAddPost}" class="btn btn-secondary mt-4 w-80">Submit</button> 
 
 </div>
